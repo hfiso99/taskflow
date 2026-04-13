@@ -1,0 +1,37 @@
+.sidebar {
+  width: 240px;
+  background: white;
+  border-right: 1px solid #ddd;
+  transition: all 0.3s;
+  padding: 1rem;
+}
+
+.open {
+  margin-left: 0;
+}
+
+.closed {
+  margin-left: -240px;
+  opacity: 0;
+}
+
+.title {
+  margin-bottom: 1rem;
+}
+
+.list {
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
