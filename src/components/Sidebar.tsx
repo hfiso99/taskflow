@@ -25,4 +25,4 @@ export default function Sidebar({ projects, isOpen }: SidebarProps) {
       </ul>
     </aside>
   );
-}
+} 

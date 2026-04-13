@@ -2,6 +2,7 @@ export interface User {
   id: string;
   email: string;
   name: string;
+  token?: string | null;
 }
 
 export interface AuthState {
@@ -22,7 +23,7 @@ export const initialState: AuthState = {
   error: null,
 };
 
-export function authReducer(state: AuthState, action: AuthAction): AuthState {
+export function authReducer(state: AuthState = initialState, action: AuthAction): AuthState {
   switch (action.type) {
     case 'LOGIN_START':
       return { user: null, loading: true, error: null };
@@ -36,3 +37,5 @@ export function authReducer(state: AuthState, action: AuthAction): AuthState {
       return state;
   }
 }
+
+export default authReducer;

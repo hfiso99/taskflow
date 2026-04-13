@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, type FormEvent } from 'react';
 import { useAuth } from './AuthContext';
 import styles from './Login.module.css';
 
@@ -7,7 +7,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     dispatch({ type: 'LOGIN_START' });
@@ -25,11 +25,19 @@ export default function Login() {
       }
 
       const { password: _, ...user } = users[0];
+      const fakeToken = btoa(
+        JSON.stringify({
+          userId: user.id,
+          email: user.email,
+          role: 'admin',
+          exp: Date.now() + 3600000,
+        })
+      );
 
       dispatch({
         type: 'LOGIN_SUCCESS',
-        payload: user,
-      });
+        payload: { ...user, token: fakeToken },
+      }); 
     } catch {
       dispatch({
         type: 'LOGIN_FAILURE',
